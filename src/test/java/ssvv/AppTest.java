@@ -1,26 +1,29 @@
-package service;
+package ssvv;
 
 import domain.Nota;
 import domain.Student;
 import domain.Tema;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepository;
 import repository.StudentXMLRepository;
 import repository.TemaXMLRepository;
+import service.Service;
 import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.Validator;
 
 import java.util.Collection;
-import java.util.Collections;
 
-import static junit.framework.Assert.assertEquals;
-
-public class ServiceAddStudentTest {
+/**
+ * Unit test for simple App.
+ */
+public class AppTest extends TestCase
+{
     @Test
-    public void testaddId1() throws  Exception{
+    public void test_addSingleStudent() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
@@ -41,7 +44,7 @@ public class ServiceAddStudentTest {
     }
 
     @Test
-    public void testaddId1Again() throws  Exception{
+    public void test_addSingleStudentAgain() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();

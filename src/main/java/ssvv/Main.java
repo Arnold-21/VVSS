@@ -1,4 +1,4 @@
-package ssvv.example;
+package ssvv;
 
 import console.*;
 import domain.*;
