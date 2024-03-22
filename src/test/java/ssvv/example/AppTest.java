@@ -17,12 +17,10 @@ import validation.Validator;
 
 import java.util.Collection;
 
-import static junit.framework.Assert.assertEquals;
-
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest extends TestCase
 {
     @Test
     public void testaddId1() throws  Exception{
