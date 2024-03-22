@@ -10,10 +10,7 @@ import repository.NotaXMLRepository;
 import repository.StudentXMLRepository;
 import repository.TemaXMLRepository;
 import service.Service;
-import validation.NotaValidator;
-import validation.StudentValidator;
-import validation.TemaValidator;
-import validation.Validator;
+import validation.*;
 
 import java.util.Collection;
 
@@ -23,45 +20,158 @@ import java.util.Collection;
 public class AppTest extends TestCase
 {
     @Test
-    public void test_addSingleStudent() throws  Exception{
+    public void test_tc1() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
-
         StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
         TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
         NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
-
         Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
 
-        service.saveStudent("1", "Test", 936);
+        service.saveStudent("1", "William", 912);
         Iterable<Student> students = service.findAllStudents();
         int size = 0;
         if (students instanceof Collection){
             size = ((Collection<Student>) students).size();
         }
         assertEquals(size, 1);
+        service.deleteStudent("1");
     }
 
     @Test
-    public void test_addSingleStudentAgain() throws  Exception{
+    public void test_tc2() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
-
         StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
         TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
         NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
-
         Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
 
-        service.saveStudent("1", "Test", 936);
+        int result = service.saveStudent("", "William", 912);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    public void test_tc3() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.saveStudent("1", "William", 912);
+        int result = service.saveStudent("1", "William", 912);
+        service.deleteStudent("1");
+
+        assertEquals(result, 1);
+    }
+
+    @Test
+    public void test_tc4() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int result = service.saveStudent("2", "", 912);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    public void test_tc5() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int result = service.saveStudent("2", "William", 110);
+        assertEquals(result, 1);
+    }
+
+    @Test
+    public void test_tc6() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.saveStudent("2", "William", 111);
+
         Iterable<Student> students = service.findAllStudents();
         int size = 0;
         if (students instanceof Collection){
             size = ((Collection<Student>) students).size();
         }
-        service.deleteStudent("1");
         assertEquals(size, 1);
+        service.deleteStudent("2");
+    }
+
+    @Test
+    public void test_tc7() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.saveStudent("3", "William", 936);
+
+        Iterable<Student> students = service.findAllStudents();
+        int size = 0;
+        if (students instanceof Collection){
+            size = ((Collection<Student>) students).size();
+        }
+        assertEquals(size, 1);
+        service.deleteStudent("3");
+    }
+
+    @Test
+    public void test_tc8() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.saveStudent("4", "William", 937);
+
+        Iterable<Student> students = service.findAllStudents();
+        int size = 0;
+        if (students instanceof Collection){
+            size = ((Collection<Student>) students).size();
+        }
+        assertEquals(size, 1);
+        service.deleteStudent("4");
+    }
+
+    @Test
+    public void test_tc9() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int result = service.saveStudent("5", "William", 938);
+        assertEquals(result, 1);
     }
 }
