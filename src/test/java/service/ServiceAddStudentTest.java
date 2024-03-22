@@ -16,9 +16,11 @@ import validation.Validator;
 import java.util.Collection;
 import java.util.Collections;
 
-public class ServiceAddStudentTest extends TestCase {
+import static junit.framework.Assert.assertEquals;
+
+public class ServiceAddStudentTest {
     @Test
-    public void addId1() throws  Exception{
+    public void testaddId1() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
@@ -39,7 +41,7 @@ public class ServiceAddStudentTest extends TestCase {
     }
 
     @Test
-    public void addId1Again() throws  Exception{
+    public void testaddId1Again() throws  Exception{
         Validator<Student> studentValidator = new StudentValidator();
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
