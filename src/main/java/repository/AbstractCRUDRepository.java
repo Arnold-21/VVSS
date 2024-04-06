@@ -35,7 +35,8 @@ public abstract class AbstractCRUDRepository<ID, E extends HasID<ID>> implements
             if (entities.containsKey(entity.getID()))
                 return null;
 
-            return entities.putIfAbsent(entity.getID(), entity);
+            entities.putIfAbsent(entity.getID(), entity);
+            return entity;
         }
         catch (ValidationException ve) {
             System.out.println("Entitatea nu este valida! \n");
