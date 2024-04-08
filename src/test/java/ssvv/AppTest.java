@@ -12,6 +12,7 @@ import repository.TemaXMLRepository;
 import service.Service;
 import validation.*;
 
+import java.io.File;
 import java.util.Collection;
 
 /**
@@ -259,5 +260,78 @@ public class AppTest extends TestCase
 
         int result = service.saveTema("1", "Testing", 3, 0);
         assertEquals(result, 1);
+    }
+
+    @Test
+    public void test_bb1() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "temeic.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "noteic.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        service.saveStudent("1", "William", 912);
+        Iterable<Student> students = service.findAllStudents();
+        int size = 0;
+        if (students instanceof Collection){
+            size = ((Collection<Student>) students).size();
+        }
+        service.deleteStudent("1");
+        assertEquals(size, 1);
+    }
+
+    @Test
+    public void test_bb2() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "temeic.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "noteic.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int result = service.saveTema("1", "Testing", 6, 5);
+        service.deleteTema("1");
+        assertEquals(result, 0);
+    }
+
+    @Test
+    public void test_bb3() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "temeic.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "noteic.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int result = service.saveNota("1", "1", 6, 5, "Testing");
+        assertEquals(result, -1);
+    }
+
+    @Test
+    public void test_bb4() throws  Exception{
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studentitest.xml");
+        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "temeic.xml");
+        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "noteic.xml");
+        Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
+
+        int studentResult = service.saveStudent("1", "William", 912);
+        int assignmentResult = service.saveTema("1", "Testing", 6, 5);
+        int result = service.saveNota("1", "1", 6, 5, "Testing");
+
+        service.deleteStudent("1");
+        service.deleteTema("1");
+        File notaFile = new File("noteic.xml");
+        notaFile.delete();
+
+        assertEquals(result, 0);
+        assertEquals(studentResult, 0);
+        assertEquals(assignmentResult, 0);
     }
 }
