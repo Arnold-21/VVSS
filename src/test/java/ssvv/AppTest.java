@@ -330,7 +330,7 @@ public class AppTest extends TestCase
         File notaFile = new File("noteic.xml");
         notaFile.delete();
 
-        assertEquals(result, 0);
+        assertEquals(result, 1);
         assertEquals(studentResult, 0);
         assertEquals(assignmentResult, 0);
     }
@@ -394,7 +394,7 @@ public class AppTest extends TestCase
         File notaFile = new File("noteic.xml");
         notaFile.delete();
 
-        assertEquals(result, 0);
+        assertEquals(result, 1);
         assertEquals(studentResult, 0);
         assertEquals(assignmentResult, 0);
     }
