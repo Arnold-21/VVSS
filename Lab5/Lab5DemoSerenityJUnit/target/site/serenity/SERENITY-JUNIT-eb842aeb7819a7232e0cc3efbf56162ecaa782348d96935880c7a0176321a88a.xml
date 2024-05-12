@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="2" name="org.example.features.search.SearchByKeywordStoryDDT" skipped="0" tests="4" time="19.93" timestamp="2024-05-12 11:01:16"><testcase classname="org.example.features.search.SearchByKeywordStoryDDT" name="Functionalities"><failure message="&#10;Expected: a string containing &quot;Acest titlu nu este in engleza&quot;&#10;     but: was &quot;Mathematics and Computer Science – between Eternity and Effervescence&quot;" type="java.lang.AssertionError">
+Expected: a string containing "Acest titlu nu este in engleza"
+     but: was "Mathematics and Computer Science – between Eternity and Effervescence"</failure><system-err>
+Expected: a string containing "Acest titlu nu este in engleza"
+     but: was "Mathematics and Computer Science – between Eternity and Effervescence"&#13;
+org.example.steps.serenity.NewEndUserSteps.shouldSeeTitle(NewEndUserSteps.java:28)&#13;
+org.example.features.search.SearchByKeywordStoryDDT.functionalities(SearchByKeywordStoryDDT.java:47)&#13;
+</system-err></testcase></testsuite>
